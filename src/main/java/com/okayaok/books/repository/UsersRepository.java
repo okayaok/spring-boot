@@ -11,5 +11,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsersRepository extends JpaRepository<User, Integer> {
 
-    boolean findByUsernameAndPassword(String username, String password);
+    /**
+     * 根据用户名和密码判断用户是否存在
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @return true:存在 false:不存在
+     */
+    boolean existsByUsernameAndPassword(String username, String password);
 }
