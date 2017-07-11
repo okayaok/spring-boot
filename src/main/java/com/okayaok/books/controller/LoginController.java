@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class LoginController {
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         System.out.println("开始跳转至登陆页面");
