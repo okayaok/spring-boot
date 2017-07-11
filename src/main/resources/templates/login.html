@@ -6,7 +6,7 @@
     <title>图书管理系统</title>
 </head>
 <body>
-<form th:action="@{/login}" th:object="${user}" method="post">
+<form th:action="@{/login}" th:object="${user}" th:method="post">
     <div><label> 用户名 : <input type="text" th:field="*{username}"/> </label></div>
     <div><label> 密  码 : <input type="password" th:field="*{password}"/> </label></div>
     <div><input type="submit" value="登录"/></div>
