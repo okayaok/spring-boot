@@ -1012,7 +1012,7 @@ ul.activity-list > li {
     width: 58%;
     height: 100%;
     position: relative;
-    background-image: url("../../assets/img/login-bg.jpg");
+    background-image: url("../img/login-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover; }
     .auth-box .right:before {
@@ -1170,7 +1170,7 @@ ul.activity-list > li {
   .profile-header .profile-main {
     position: relative;
     padding: 20px;
-    background-image: url("../../assets/img/profile-bg.png");
+    background-image: url("../img/profile-bg.png");
     background-repeat: no-repeat;
     background-size: cover; }
   .profile-header .name {
