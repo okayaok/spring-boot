@@ -18,15 +18,14 @@ public class LoginController {
     @Autowired
     private UsersRepository usersRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
         model.addAttribute("user", new User());
-        System.out.println("开始跳转至登陆页面");
         return "login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(User user) {
+    public String signIn(User user) {
         boolean isExist = usersRepository.existsByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (isExist) {
             System.out.println("登陆成功");
