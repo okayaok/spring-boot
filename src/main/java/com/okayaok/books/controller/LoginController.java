@@ -28,7 +28,6 @@ public class LoginController {
     public String signIn(User user) {
         boolean isExist = usersRepository.existsByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (isExist) {
-            System.out.println("登陆成功");
             return "redirect:/users";
         } else {
             return "redirect:/login";
