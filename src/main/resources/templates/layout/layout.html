@@ -87,11 +87,14 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <div layout:fragment="containerBody"></div>
+                <div class="panel panel-headline">
+                    <div layout:fragment="containerBody"></div>
+                </div>
             </div>
         </div>
     </div>
 
+    <footer th:include="footer :: footer"></footer>
 </div>
 </body>
 </html>
