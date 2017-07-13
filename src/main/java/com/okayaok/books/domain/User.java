@@ -1,8 +1,6 @@
-package com.okayaok.books.user;
+package com.okayaok.books.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -14,6 +12,7 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
@@ -21,6 +20,9 @@ public class User {
 
     @NotNull
     private String password;
+
+    @Column(name = "email")
+    private String email;
 
     public Integer getId() {
         return id;
@@ -44,5 +46,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

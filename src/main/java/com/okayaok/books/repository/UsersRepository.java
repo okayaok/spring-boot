@@ -1,6 +1,6 @@
 package com.okayaok.books.repository;
 
-import com.okayaok.books.user.User;
+import com.okayaok.books.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

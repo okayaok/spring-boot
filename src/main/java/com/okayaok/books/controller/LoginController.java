@@ -1,7 +1,7 @@
 package com.okayaok.books.controller;
 
 import com.okayaok.books.repository.UsersRepository;
-import com.okayaok.books.user.User;
+import com.okayaok.books.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
