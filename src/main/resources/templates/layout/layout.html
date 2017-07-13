@@ -29,12 +29,18 @@
         </div>
         <div class="container-fluid">
             <div class="navbar-btn">
-                <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+                <button type="button" class="btn-toggle-fullwidth">
+                    <i class="lnr lnr-arrow-left-circle"></i>
+                </button>
             </div>
+
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="lnr lnr-question-circle"></i> <span>Help</span>
+                            <i class="icon-submenu lnr lnr-chevron-down"></i>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Basic Use</a></li>
                             <li><a href="#">Working With Data</a></li>
@@ -43,7 +49,10 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar" /> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img th:src="@{/static/img/user.png}" class="img-circle" /> <span>Samuel</span>
+                            <i class="icon-submenu lnr lnr-chevron-down"></i>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                             <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
@@ -94,7 +103,13 @@
         </div>
     </div>
 
-    <footer th:include="footer :: footer"></footer>
+    <footer th:include="layout/footer :: footer"></footer>
 </div>
+
+<script type="text/javascript" th:src="@{/static/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/jquery.slimscroll.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/klorofil-common.js}"></script>
+
 </body>
 </html>
