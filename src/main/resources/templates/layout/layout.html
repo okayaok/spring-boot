@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>图书管理系统</title>
@@ -13,7 +13,7 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" th:href="@{/static/css/main.css}" />
     <!-- GOOGLE FONTS -->
-    <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700}" rel="stylesheet">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700}" rel="stylesheet" />
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" th:href="@{/static/img/apple-icon.png}" />
     <link rel="icon" type="image/png" sizes="96x96" th:href="@{/static/img/favicon.png}" />
@@ -25,7 +25,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="brand">
-            <a href="index.html"><img th:src="@{/static/img/logo-dark.png}" class="img-responsive logo"></a>
+            <a href="index.html"><img th:src="@{/static/img/logo-dark.png}" class="img-responsive logo" /></a>
         </div>
         <div class="container-fluid">
             <div class="navbar-btn">
@@ -43,7 +43,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar" /> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                             <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <div th:fragment="containerBody"></div>
+    <div layout:fragment="containerBody"></div>
 
 </div>
 </body>
