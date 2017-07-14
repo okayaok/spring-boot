@@ -20,15 +20,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/static/**", "/login", "/users/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/static/**", "/login").permitAll()
+                    .antMatchers("/", "/users/**").authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
+                    .loginPage("/login")
+                    .permitAll()
+                    .and()
                 .logout()
-                .permitAll();
+                    .permitAll();
     }
 
     @Autowired

@@ -28,7 +28,7 @@ public class LoginController {
     public String signIn(User user) {
         boolean isExist = usersRepository.existsByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (isExist) {
-            return "redirect:/users";
+            return "redirect:/";
         } else {
             return "redirect:/login";
         }
