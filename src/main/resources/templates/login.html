@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
     <meta charset="utf-8" />
-    <title>图书管理系统</title>
+    <title th:text="#{system.title}">图书管理系统-Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="okayaok" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -37,14 +37,14 @@
 
     <!-- BEGIN LOGIN FORM -->
     <form class="form-vertical login-form" th:action="@{/login}" th:method="post" th:object="${user}">
-        <h3 class="form-title">登录您的账户</h3>
+        <h3 class="form-title" th:text="#{web.login.account.description}">登录您的账户</h3>
         <div class="alert alert-error hide">
             <button class="close" data-dismiss="alert"></button>
-            <span>请输入您的用户名和密码.</span>
+            <span th:text="#{web.login.description}">请输入您的用户名和密码.</span>
         </div>
 
         <div class="control-group">
-            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+            <label class="control-label visible-ie8 visible-ie9" th:text="#{web.common.username}">用户名</label>
             <div class="controls">
                 <div class="input-icon left">
                     <i class="icon-user"></i>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label visible-ie8 visible-ie9">密码</label>
+            <label class="control-label visible-ie8 visible-ie9" th:text="#{web.common.password}">密码</label>
             <div class="controls">
                 <div class="input-icon left">
                     <i class="icon-lock"></i>
@@ -65,32 +65,32 @@
 
         <div class="form-actions">
             <label class="checkbox">
-                <input type="checkbox" name="remember" value="1"/> 记住我
+                <input type="checkbox" name="remember" value="1" th:text="#{web.login.rememberMe}" />
             </label>
-            <button type="submit" class="btn green pull-right">
+            <button type="submit" class="btn green pull-right" th:text="#{web.login}">
                 登录 <i class="m-icon-swapright m-icon-white"></i>
             </button>
         </div>
 
         <div class="forget-password">
-            <h4>忘记密码?</h4>
-            <p>
-                不用担心,点击 <a href="javascript:;" class="" id="forget-password">这儿</a>
-                重置密码.
+            <h4 th:text="#{web.login.forgot.password}">忘记密码?</h4>
+            <p th:text="#{web.login.forgot.description}">
+                不用担心,点击 <a href="javascript:;" class="text-info" id="forget-password"><span th:text="#{web.login.forgot.here}">这儿</span></a>
+                <span th:text="#{web.login.password.reset}"></span>.
             </p>
         </div>
 
         <div class="create-account">
-            <p>
-                还没有账户 ?&nbsp;
-                <a href="javascript:;" id="register-btn" class="">创建账户</a>
+            <p th:text="#{web.login.no.account}">
+                还没有账户?&nbsp;
+                <a href="javascript:;" id="register-btn" class=""><span th:text="#{web.login.create.account}">创建账户</span></a>
             </p>
         </div>
     </form>
 
     <form class="form-vertical forget-form" action="index.html">
-        <h3 class="">忘记密码 ?</h3>
-        <p>为了重置您的密码，请输入您的邮箱</p>
+        <h3 class="" th:text="#{web.login.forgot.password}">忘记密码?</h3>
+        <p th:text="#{web.login.reset.password.byEmail}">为了重置您的密码，请输入您的邮箱</p>
         <div class="control-group">
             <div class="controls">
                 <div class="input-icon left">
@@ -102,20 +102,21 @@
 
         <div class="form-actions">
             <button type="button" id="back-btn" class="btn">
-                <i class="m-icon-swapleft"></i> 返回
+                <i class="m-icon-swapleft"></i>
+                <span th:text="#{web.common.back}">返回</span>
             </button>
 
-            <button type="submit" class="btn green pull-right">
+            <button type="submit" class="btn green pull-right" th:text="#{web.common.submit}">
                 提交 <i class="m-icon-swapright m-icon-white"></i>
             </button>
         </div>
     </form>
 
     <form class="form-vertical register-form" action="index.html">
-        <h3 class="">提交</h3>
-        <p>请在下面输入框中输入您的详细信息</p>
+        <h3 class="" th:text="#{web.common.submit}">提交</h3>
+        <p th:text="#{web.login.register.description}">请在下面输入框中输入您的详细信息</p>
         <div class="control-group">
-            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+            <label class="control-label visible-ie8 visible-ie9" th:text="#{web.common.username}">用户名</label>
             <div class="controls">
                 <div class="input-icon left">
                     <i class="icon-user"></i>
@@ -125,7 +126,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label visible-ie8 visible-ie9">密码</label>
+            <label class="control-label visible-ie8 visible-ie9" th:text="#{web.common.password}">密码</label>
             <div class="controls">
                 <div class="input-icon left">
                     <i class="icon-lock"></i>
@@ -135,7 +136,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label visible-ie8 visible-ie9">重置密码</label>
+            <label class="control-label visible-ie8 visible-ie9" th:text="#{web.login.password.reset}">重置密码</label>
             <div class="controls">
                 <div class="input-icon left">
                     <i class="icon-ok"></i>
@@ -145,7 +146,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label visible-ie8 visible-ie9">邮箱</label>
+            <label class="control-label visible-ie8 visible-ie9" th:text="#{web.user.email}">邮箱</label>
             <div class="controls">
                 <div class="input-icon left">
                     <i class="icon-envelope"></i>
@@ -165,10 +166,10 @@
 
         <div class="form-actions">
             <button id="register-back-btn" type="button" class="btn">
-                <i class="m-icon-swapleft"></i>  返回
+                <i class="m-icon-swapleft"></i><span th:text="#{web.common.back}">返回</span>
             </button>
 
-            <button type="submit" id="register-submit-btn" class="btn green pull-right">提交
+            <button type="submit" id="register-submit-btn" class="btn green pull-right" th:text="#{web.common.submit}">提交
                 <i class="m-icon-swapright m-icon-white"></i>
             </button>
         </div>
@@ -179,7 +180,7 @@
 
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-    2017 &copy; 图书管理系统
+    2017 &copy; <span th:text="#{system.title}">图书管理系统</span>
 </div>
 
 <script th:src="@{/static/js/jquery/jquery-1.10.1.min.js}" type="text/javascript"></script>
