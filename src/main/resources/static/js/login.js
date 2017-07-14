@@ -5,7 +5,7 @@ var Login = function () {
         init: function () {
         	
            $('.login-form').validate({
-	            errorElement: 'label', //default input error message container
+	            errorElement: 'span', //default input error message container
 	            errorClass: 'help-inline', // default input error message class
 	            focusInvalid: false, // do not focus the last invalid input
 	            rules: {
@@ -22,10 +22,10 @@ var Login = function () {
 
 	            messages: {
 	                username: {
-	                    required: "Username is required."
+	                    required: "用户名不能为空"
 	                },
 	                password: {
-	                    required: "Password is required."
+	                    required: "密码不能为空"
 	                }
 	            },
 
@@ -45,17 +45,13 @@ var Login = function () {
 
 	            errorPlacement: function (error, element) {
 	                error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
-	            },
-
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
 	            }
 	        });
 
 	        $('.login-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.login-form').validate().form()) {
-	                    window.location.href = "index.html";
+	                    window.location.href = "/login";
 	                }
 	                return false;
 	            }
@@ -75,7 +71,7 @@ var Login = function () {
 
 	            messages: {
 	                email: {
-	                    required: "Email is required."
+	                    required: "邮箱不能为空"
 	                }
 	            },
 
@@ -187,6 +183,16 @@ var Login = function () {
 	            jQuery('.login-form').show();
 	            jQuery('.register-form').hide();
 	        });
+
+			$.backstretch([
+				"static/image/bg/1.jpg",
+				"static/image/bg/2.jpg",
+				"static/image/bg/3.jpg",
+				"static/image/bg/4.jpg"
+			], {
+				fade: 1000,
+				duration: 8000
+			});
         }
 
     };
