@@ -91,17 +91,13 @@ var Login = function () {
 
 	            errorPlacement: function (error, element) {
 	                error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
-	            },
-
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
 	            }
 	        });
 
 	        $('.forget-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.forget-form').validate().form()) {
-	                    window.location.href = "index.html";
+	                    window.location.href = "/login";
 	                }
 	                return false;
 	            }
@@ -142,8 +138,21 @@ var Login = function () {
 	            },
 
 	            messages: { // custom messages for radio buttons and checkboxes
-	                tnc: {
-	                    required: "Please accept TNC first."
+	                username: {
+	                	required: "用户名不能为空"
+					},
+					password: {
+	                	required: "密码不能为空"
+					},
+					rpassword: {
+	                	equalTo: "确认密码与输入的密码不一致"
+					},
+					email: {
+	                	required: "邮箱不能为空",
+						email: "请输入正确的邮箱格式"
+					},
+					tnc: {
+	                    required: "请接受协议"
 	                }
 	            },
 
@@ -167,10 +176,6 @@ var Login = function () {
 	                } else {
 	                    error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
 	                }
-	            },
-
-	            submitHandler: function (form) {
-	                window.location.href = "index.html";
 	            }
 	        });
 

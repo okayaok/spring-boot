@@ -67,24 +67,21 @@
             <label class="checkbox">
                 <input type="checkbox" name="remember" value="1" th:text="#{web.login.rememberMe}" />
             </label>
-            <button type="submit" class="btn green pull-right" th:text="#{web.login}">
-                登录 <i class="m-icon-swapright m-icon-white"></i>
+            <button type="submit" class="btn green pull-right">
+                <span th:text="#{web.login}">登录</span> <i class="m-icon-swapright m-icon-white"></i>
             </button>
         </div>
 
-        <div class="forget-password">
+        <div class="forget-password" style="color: whitesmoke">
             <h4 th:text="#{web.login.forgot.password}">忘记密码?</h4>
-            <p th:text="#{web.login.forgot.description}">
-                不用担心,点击 <a href="javascript:;" class="text-info" id="forget-password"><span th:text="#{web.login.forgot.here}">这儿</span></a>
-                <span th:text="#{web.login.password.reset}"></span>.
-            </p>
+            <span th:text="#{web.login.forgot.description}">不用担心,点击</span>
+            <span><a href="javascript:;" class="text-info" id="forget-password" th:text="#{web.login.forgot.here}"></a></span>
+            <span th:text="#{web.login.password.reset}">重置密码</span>.
         </div>
 
-        <div class="create-account">
-            <p th:text="#{web.login.no.account}">
-                还没有账户?&nbsp;
-                <a href="javascript:;" id="register-btn" class=""><span th:text="#{web.login.create.account}">创建账户</span></a>
-            </p>
+        <div class="create-account" style="color: whitesmoke">
+            <span th:text="#{web.login.no.account}">还没有账户?&nbsp;</span>
+            <span><a href="javascript:;" id="register-btn" class="" th:text="#{web.login.create.account}">创建账户</a></span>
         </div>
     </form>
 
@@ -101,13 +98,13 @@
         </div>
 
         <div class="form-actions">
-            <button type="button" id="back-btn" class="btn">
+            <button type="button" id="back-btn" class="btn red">
                 <i class="m-icon-swapleft"></i>
                 <span th:text="#{web.common.back}">返回</span>
             </button>
 
-            <button type="submit" class="btn green pull-right" th:text="#{web.common.submit}">
-                提交 <i class="m-icon-swapright m-icon-white"></i>
+            <button type="submit" class="btn green pull-right">
+                <span th:text="#{web.common.submit}">提交</span><i class="m-icon-swapright m-icon-white"></i>
             </button>
         </div>
     </form>
@@ -158,19 +155,19 @@
         <div class="control-group">
             <div class="controls">
                 <label class="checkbox">
-                    <input type="checkbox" name="tnc"/> 我接受 <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    <input type="checkbox" name="tnc"/> 我接受
                 </label>
                 <div id="register_tnc_error"></div>
             </div>
         </div>
 
         <div class="form-actions">
-            <button id="register-back-btn" type="button" class="btn">
+            <button id="register-back-btn" type="button" class="btn red">
                 <i class="m-icon-swapleft"></i><span th:text="#{web.common.back}">返回</span>
             </button>
 
-            <button type="submit" id="register-submit-btn" class="btn green pull-right" th:text="#{web.common.submit}">提交
-                <i class="m-icon-swapright m-icon-white"></i>
+            <button type="submit" id="register-submit-btn" class="btn green pull-right">
+                <span th:text="#{web.common.submit}">提交</span><i class="m-icon-swapright m-icon-white"></i>
             </button>
         </div>
 
