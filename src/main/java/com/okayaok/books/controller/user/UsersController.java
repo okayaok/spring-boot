@@ -1,4 +1,4 @@
-package com.okayaok.books.controller;
+package com.okayaok.books.controller.user;
 
 import com.okayaok.books.repository.UsersRepository;
 import com.okayaok.books.domain.User;

@@ -58,18 +58,18 @@
                     </div>
                 </div>
 
-                <h3 class="page-title" th:text="#{web.user.management}">用户管理 <small th:text="#{web.user.index}">用户列表</small></h3>
+                <h3 class="page-title" th:text="#{web.role.management}">角色管理 <small th:text="#{web.role.index}">角色列表</small></h3>
                 <ul class="breadcrumb">
                     <li>
                         <i class="icon-home"></i>
-                        <a th:href="@{/}" th:text="#{web.common.home}">主页</a>
+                        <a href="/" th:text="#{web.common.home}">主页</a>
                         <i class="icon-angle-right"></i>
                     </li>
                     <li>
-                        <span th:text="#{web.user.management}">用户管理</span>
+                        <span th:text="#{web.role.management}">角色管理</span>
                         <i class="icon-angle-right"></i>
                     </li>
-                    <li><a th:href="@{/users}" th:text="#{web.user.index}">用户列表</a></li>
+                    <li><a th:href="@{/roles}" th:text="#{web.role.index}">角色列表</a></li>
                 </ul>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <!-- BEGIN SAMPLE TABLE PORTLET-->
             <div class="portlet box red">
                 <div class="portlet-title">
-                    <div class="caption"><i class="icon-user"></i><span th:text="#{web.user.index}">用户列表</span></div>
+                    <div class="caption"><i class="icon-user"></i><span th:text="#{web.role.index}">角色列表</span></div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse"></a>
                         <a href="#portlet-config" data-toggle="modal" class="config"></a>
@@ -92,22 +92,14 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th th:text="#{web.common.username}">Username</th>
-                            <th th:text="#{web.common.password}">Password</th>
-                            <th th:text="#{web.user.email}">Email</th>
-                            <th th:text="#{web.user.roles.name}">所属权限</th>
+                            <th th:text="#{web.role.roleName}">角色名</th>
                         </tr>
                         </thead>
 
-                        <tbody th:each="user : ${users}">
+                        <tbody th:each="role : ${roles}">
                         <tr>
-                            <td th:text="${user.id}">1</td>
-                            <td th:text="${user.username}">Mark</td>
-                            <td th:text="${user.password}">Otto</td>
-                            <td th:text="${user.email}">makr124</td>
-                            <td th:each="role : ${user.roles}">
-                                <span th:text="${role.roleName}"></span>
-                            </td>
+                            <td th:text="${role.id}">1</td>
+                            <td th:text="${role.roleName}">Mark</td>
                         </tr>
                         </tbody>
                     </table>

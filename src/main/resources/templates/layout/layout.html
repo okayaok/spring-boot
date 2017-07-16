@@ -34,14 +34,14 @@
     <div class="navbar-inner">
         <div class="container-fluid">
             <!-- BEGIN LOGO -->
-            <a class="brand" href="index.html">
-                <img th:src="@{/static/image/logo.png}" alt="logo"/>
+            <a class="brand" th:href="@{/}">
+                <img src="/static/image/logo.png" th:src="@{/static/image/logo.png}" alt="logo"/>
             </a>
             <!-- END LOGO -->
 
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-                <img th:src="@{/static/image/menu-toggler.png}" alt="" />
+                <img  src="/static/image/menu-toggler.png" th:src="@{/static/image/menu-toggler.png}" alt="" />
             </a>
             <!-- END RESPONSIVE MENU TOGGLER -->
 
@@ -88,7 +88,7 @@
 
                         <li>
                             <a href="inbox.html?a=view">
-                                <span class="photo"><img th:src="@{/static/image/avatar2.jpg}" alt="" /></span>
+                                <span class="photo"><img src="/static/image/avatar2.jpg" th:src="@{/static/image/avatar2.jpg}" alt="" /></span>
 								<span class="subject">
                                     <span class="from">Lisa Wong</span>
                                     <span class="time">Just Now</span>
@@ -98,7 +98,7 @@
                         </li>
 
                         <li class="external">
-                            <a href="inbox.html">See all messages <i class="m-icon-swapright"></i></a>
+                            <a href="#">See all messages <i class="m-icon-swapright"></i></a>
                         </li>
                     </ul>
                 </li>
@@ -139,7 +139,7 @@
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img alt="" th:src="@{/static/image/avatar1_small.jpg}" />
+                        <img alt="" src="/static/image/avatar1_small.jpg" th:src="@{/static/image/avatar1_small.jpg}" />
                         <span class="username">Bob Nilson</span>
                         <i class="icon-angle-down"></i>
                     </a>
@@ -151,7 +151,7 @@
                         <li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="icon-lock"></i> Lock Screen</a></li>
-                        <li><a th:href="@{/logout}"><i class="icon-key"></i>退出</a></li>
+                        <li><a th:href="@{/logout}"><i class="icon-key"></i><span th:text="#{web.logout}">退出</span></a></li>
                     </ul>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
@@ -188,7 +188,7 @@
             </li>
 
             <li class="start active">
-                <a href="index.html">
+                <a href="/">
                     <i class="icon-home"></i>
                     <span class="title" th:text="#{web.common.home}">首页</span>
                     <span class="selected"></span>
@@ -198,33 +198,17 @@
             <li class="">
                 <a href="javascript:;">
                     <i class="icon-user"></i>
-                    <span class="title">用户管理</span>
+                    <span class="title" th:text="#{web.user.management}">用户管理</span>
                     <span class="arrow "></span>
                 </a>
 
                 <ul class="sub-menu">
                     <li >
-                        <a th:href="@{/users}">用户列表</a>
+                        <a th:href="@{/users}" th:text="#{web.user.index}">用户列表</a>
                     </li>
 
                     <li >
-                        <a href="#">Horzontal Menu 1</a>
-                    </li>
-
-                    <li >
-                        <a href="#">Horzontal Menu 2</a>
-                    </li>
-
-                    <li >
-                        <a href="#">Promo Page</a>
-                    </li>
-
-                    <li >
-                        <a href="#">Email Templates</a>
-                    </li>
-
-                    <li >
-                        <a href="#">Content Loading via Ajax</a>
+                        <a th:href="@{/roles}" th:text="#{web.role.index}">角色列表</a>
                     </li>
                 </ul>
             </li>
