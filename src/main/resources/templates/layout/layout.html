@@ -139,7 +139,7 @@
 
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown user">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
                         <img alt="" src="/static/image/avatar1_small.jpg" th:src="@{/static/image/avatar1_small.jpg}" />
                         <span class="username">Bob Nilson</span>
                         <i class="icon-angle-down"></i>
@@ -204,11 +204,11 @@
                 </a>
 
                 <ul class="sub-menu">
-                    <li>
+                    <li sec:authorize="hasRole('USER')">
                         <a th:href="@{/users}" th:text="#{web.user.index}">用户列表</a>
                     </li>
 
-                    <li>
+                    <li sec:authorize="hasRole('ADMIN')">
                         <a th:href="@{/roles}" th:text="#{web.role.index}">角色列表</a>
                     </li>
                 </ul>
@@ -229,8 +229,8 @@
     <footer th:include="layout/footer :: footer"></footer>
 </div>
 
-<script th:src="@{/static/js/jquery/jquery-3.2.1.js}" type="text/javascript"></script>
-<script th:src="@{/static/js/jquery/jquery-migrate-1.4.1.min.js}" type="text/javascript"></script>
+<script th:src="@{/static/js/jquery/jquery-1.10.1.min.js}" type="text/javascript"></script>
+<script th:src="@{/static/js/jquery/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
 <script th:src="@{/static/js/jquery/jquery-ui-1.10.1.custom.min.js}" type="text/javascript"></script>
 <script th:src="@{/static/js/bootstrap/bootstrap.min.js}" type="text/javascript"></script>
 
