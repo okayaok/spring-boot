@@ -25,7 +25,7 @@ public class UsersService implements UserDetailsService {
      *
      * @param username 用户名
      * @return 用户信息
-     * @throws UsernameNotFoundException
+     * @throws UsernameNotFoundException 用户名不存在异常
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
