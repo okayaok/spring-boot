@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 
@@ -87,7 +88,7 @@
                         </li>
 
                         <li>
-                            <a href="inbox.html?a=view">
+                            <a href="#">
                                 <span class="photo"><img src="/static/image/avatar2.jpg" th:src="@{/static/image/avatar2.jpg}" alt="" /></span>
 								<span class="subject">
                                     <span class="from">Lisa Wong</span>
@@ -104,7 +105,7 @@
                 </li>
                 <!-- END INBOX DROPDOWN -->
 
-                <!-- BEGIN TODO DROPDOWN -->
+                <!-- BEGIN DROPDOWN -->
                 <li class="dropdown" id="header_task_bar">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-tasks"></i>
@@ -134,7 +135,7 @@
                     </ul>
                 </li>
 
-                <!-- END TODO DROPDOWN -->
+                <!-- END DROPDOWN -->
 
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown user">
@@ -203,11 +204,11 @@
                 </a>
 
                 <ul class="sub-menu">
-                    <li >
+                    <li>
                         <a th:href="@{/users}" th:text="#{web.user.index}">用户列表</a>
                     </li>
 
-                    <li >
+                    <li>
                         <a th:href="@{/roles}" th:text="#{web.role.index}">角色列表</a>
                     </li>
                 </ul>
@@ -228,8 +229,8 @@
     <footer th:include="layout/footer :: footer"></footer>
 </div>
 
-<script th:src="@{/static/js/jquery/jquery-1.10.1.min.js}" type="text/javascript"></script>
-<script th:src="@{/static/js/jquery/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
+<script th:src="@{/static/js/jquery/jquery-3.2.1.js}" type="text/javascript"></script>
+<script th:src="@{/static/js/jquery/jquery-migrate-1.4.1.min.js}" type="text/javascript"></script>
 <script th:src="@{/static/js/jquery/jquery-ui-1.10.1.custom.min.js}" type="text/javascript"></script>
 <script th:src="@{/static/js/bootstrap/bootstrap.min.js}" type="text/javascript"></script>
 
@@ -241,7 +242,7 @@
 <script th:src="@{/static/js/jquery/jquery.slimscroll.min.js}" type="text/javascript"></script>
 <script th:src="@{/static/js/jquery/jquery.blockui.min.js}" type="text/javascript"></script>
 <script th:src="@{/static/js/jquery/jquery.cookie.min.js}" type="text/javascript"></script>
-<script th:src="@{/static/js/jquery/jquery.uniform.min.js}" type="text/javascript" ></script>
+<script th:src="@{/static/js/jquery/jquery.uniform.min.js}" type="text/javascript"></script>
 <script th:src="@{/static/js/app.js}" type="text/javascript"></script>
 
 <script type="text/javascript">
