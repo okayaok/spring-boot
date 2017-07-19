@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 将自定义的UserDetailsService注入到认证管理中
+     * 将自定义的AuthenticationProvider注入到认证管理中
      *
      * @param auth 认证授权
      * @throws Exception 认证异常
@@ -83,8 +83,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
                 .permitAll();
     }
 

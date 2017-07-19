@@ -23,4 +23,24 @@ public class HomeController {
     public String index() {
         return "index";
     }
+
+    /**
+     * 跳转到404页面
+     *
+     * @return 404页面
+     */
+    @RequestMapping(value = "/error/404", method = RequestMethod.GET)
+    public String viewNotFount() {
+        return "/error/404";
+    }
+
+    /**
+     * 跳转至无权限页面
+     *
+     * @return 403页面
+     */
+    @RequestMapping(value = "/error/403", method = RequestMethod.GET)
+    public String unAuthentication() {
+        return "/error/403";
+    }
 }

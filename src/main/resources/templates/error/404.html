@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorator="layout/layout">
+      layout:decorator="layout/error">
 
 <body>
 
-<div layout:fragment="containerBody">
-    <h1 class="text-danger">该页面找不到！</h1>
+<div layout:fragment="errorBody">
+    <div class="span12 page-404">
+        <div class="number">
+            404
+        </div>
+
+        <div class="details">
+            <h3 th:text="#{web.error.description}">非常抱歉, 您的请求已丢失.</h3>
+            <p th:text="#{web.error.view.notFount}">我们没有发现您所要查看的网页.<br /></p>
+            <span><a th:href="@{/}" th:text="#{web.common.return.home}">返回主页</a></span>
+            <form action="#">
+                <div class="input-append">
+                    <input class="m-wrap" size="16" type="text" placeholder="keyword..." />
+                    <button class="btn blue" th:text="#{web.common.search}">搜索</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>

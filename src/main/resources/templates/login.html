@@ -85,7 +85,7 @@
         </div>
     </form>
 
-    <form class="form-vertical forget-form" action="index.html">
+    <form class="form-vertical forget-form" th:action="@{/resetPassword}" th:method="put">
         <h3 class="" th:text="#{web.login.forgot.password}">忘记密码?</h3>
         <p th:text="#{web.login.reset.password.byEmail}">为了重置您的密码，请输入您的邮箱</p>
         <div class="control-group">
@@ -109,7 +109,7 @@
         </div>
     </form>
 
-    <form class="form-vertical register-form" action="index.html">
+    <form class="form-vertical register-form" th:action="@{/register}" th:method="post">
         <h3 class="" th:text="#{web.common.submit}">提交</h3>
         <p th:text="#{web.login.register.description}">请在下面输入框中输入您的详细信息</p>
         <div class="control-group">
