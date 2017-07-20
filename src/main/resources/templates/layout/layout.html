@@ -22,7 +22,7 @@
     <!-- 全局CSS样式 END-->
 
     <!-- Bootstrap表格样式CSS -->
-    <link rel="stylesheet" th:href="@{/static/css/bootstrap/DT_bootstrap.css}" />
+    <!--<link rel="stylesheet" th:href="@{/static/css/bootstrap/DT_bootstrap.css}" />-->
     <link rel="shortcut icon" th:href="@{/static/image/favicon.ico}" />
 </head>
 
@@ -176,17 +176,17 @@
 
             <li class="">
                 <a href="javascript:;">
-                    <i class="icon-user"></i>
+                    <i class="icon-group"></i>
                     <span class="title" th:text="#{web.user.management}">用户管理</span>
                     <span class="arrow "></span>
                 </a>
 
                 <ul class="sub-menu">
-                    <li sec:authorize="hasRole('USER')">
+                    <li>
                         <a th:href="@{/users}" th:text="#{web.user.index}">用户列表</a>
                     </li>
 
-                    <li sec:authorize="hasRole('ADMIN')">
+                    <li>
                         <a th:href="@{/roles}" th:text="#{web.role.index}">角色列表</a>
                     </li>
                 </ul>
