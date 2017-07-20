@@ -10,54 +10,7 @@
 
         <div class="row-fluid">
             <div class="span12">
-                <!-- BEGIN STYLE CUSTOMIZER -->
-                <div class="color-panel hidden-phone">
-                    <div class="color-mode-icons icon-color"></div>
-                    <div class="color-mode-icons icon-color-close"></div>
-                    <div class="color-mode">
-                        <p>主题颜色</p>
-                        <ul class="inline">
-                            <li class="color-black current color-default" data-style="default"></li>
-                            <li class="color-blue" data-style="blue"></li>
-                            <li class="color-brown" data-style="brown"></li>
-                            <li class="color-purple" data-style="purple"></li>
-                            <li class="color-grey" data-style="grey"></li>
-                            <li class="color-white color-light" data-style="light"></li>
-                        </ul>
-
-                        <label>
-                            <span>Layout</span>
-                            <select class="layout-option m-wrap small">
-                                <option value="fluid" selected="selected">Fluid</option>
-                                <option value="boxed">Boxed</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            <span>Header</span>
-                            <select class="header-option m-wrap small">
-                                <option value="fixed" selected="selected">Fixed</option>
-                                <option value="default">Default</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            <span>Sidebar</span>
-                            <select class="sidebar-option m-wrap small">
-                                <option value="fixed">Fixed</option>
-                                <option value="default" selected="selected">Default</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            <span>Footer</span>
-                            <select class="footer-option m-wrap small">
-                                <option value="fixed">Fixed</option>
-                                <option value="default" selected="selected">Default</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
+                <div th:include="~{layout/style :: styleCustom}"></div>
 
                 <h3 class="page-title" th:text="#{web.user.management}">用户管理 <small th:text="#{web.user.index}">用户列表</small></h3>
                 <ul class="breadcrumb">
