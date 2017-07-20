@@ -32,10 +32,16 @@ public class LoginController {
      * @return 成功页面
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(User user) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        usersRepository.save(user);
+    public String register(User user, Model model) {
+        try {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            usersRepository.save(user);
+            model.addAttribute("messages", "success");
+        } catch (Exception e) {
+            model.addAttribute("messages", "failure");
+        }
+
         return "login";
     }
 
