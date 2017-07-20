@@ -74,11 +74,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
+                //关闭CSRF
                 .csrf()
                     .disable()
                 .authorizeRequests()
-                    .antMatchers("/static/**", "/login").permitAll()
+                    //不需要验证就可以访问的请求
+                    .antMatchers("/static/**", "/login", "/register").permitAll()
+                    //验证通过后才能访问的请求
                     .antMatchers("/", "/users/**", "/roles/**").authenticated()
+                    .and()
+                //配置记住我功能，失效时间为7天
+                .rememberMe()
+                    .key("booksRememberMe")
+                    .rememberMeParameter("rememberMe")
+                    .tokenValiditySeconds(24*60*60*7)
                     .and()
                 .formLogin()
                     .loginPage("/login")

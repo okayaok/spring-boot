@@ -32,6 +32,8 @@ public class UsersService implements UserDetailsService {
         User user = usersRepository.findByUsername(username);
         if (user != null) {
             user.getAuthorities();
+        } else {
+            throw new UsernameNotFoundException("该用户不存在");
         }
         return user;
     }
