@@ -20,8 +20,6 @@ var App = function () {
     //设置Layout的主题颜色
     var layoutColorCodes = {
         'blue': '#4b8df8',
-        'red': '#e02222',
-        'green': '#35aa47',
         'grey': '#555555',
         'light-grey': '#fafafa'
     };
@@ -98,6 +96,9 @@ var App = function () {
         handleSidebarAndContentHeight();
     };
 
+    /**
+     * 针对IE8进行响应式调整
+     */
     var handleResponsiveOnResize = function () {
         var resize;
         if (isIE8) {
@@ -128,8 +129,11 @@ var App = function () {
     };
 
     //* BEGIN:CORE HANDLERS *//
-    // this function handles responsive layout on screen size resize or mobile device rotate.
 
+    /**
+     * 该函数在屏幕进行调整或者手机屏幕旋转时，响应设置Layout。
+     * 处理侧边菜单栏和文本显示高度，以及footer显示高度设置
+     */
     var handleSidebarAndContentHeight = function () {
         var content = $('.page-content');
         var sidebar = $('.page-sidebar');
@@ -143,7 +147,7 @@ var App = function () {
             }
         } else {
             if (body.hasClass('page-sidebar-fixed')) {
-                height = _calculateFixedSidebarViewportHeight();
+                height = calculateFixedSidebarViewportHeight();
             } else {
                 height = sidebar.height() + 20;
             }
@@ -153,10 +157,13 @@ var App = function () {
         }
     };
 
+    /**
+     * 处理侧边菜单栏
+     */
     var handleSidebarMenu = function () {
         jQuery('.page-sidebar').on('click', 'li > a', function (e) {
             if ($(this).next().hasClass('sub-menu') == false) {
-                if ($('.btn-navbar').hasClass('collapsed') == false) {
+                if (!$('.btn-navbar').hasClass('collapsed')) {
                     $('.btn-navbar').click();
                 }
                 return;
@@ -186,37 +193,15 @@ var App = function () {
             e.preventDefault();
         });
 
-        // handle ajax links
-        jQuery('.page-sidebar').on('click', ' li > a.ajaxify', function (e) {
-            e.preventDefault();
-            App.scrollTop();
-
-            var url = $(this).attr("href");
-            var menuContainer = jQuery('.page-sidebar ul');
-            var pageContent = $('.page-content');
-            var pageContentBody = $('.page-content .page-content-body');
-
-            menuContainer.children('li.active').removeClass('active');
-            menuContainer.children('arrow.open').removeClass('open');
-
-            $(this).parents('li').each(function () {
-                $(this).addClass('active');
-                $(this).children('a > span.arrow').addClass('open');
-            });
-            $(this).parents('li').addClass('active');
-
-            App.blockUI(pageContent, false);
-
-            $.post(url, {}, function (res) {
-                App.unblockUI(pageContent);
-                pageContentBody.html(res);
-                App.fixContentHeight(); // fix content height
-                App.initUniform(); // initialize uniform elements
-            });
-        });
     };
 
-    var _calculateFixedSidebarViewportHeight = function () {
+    /**
+     * 计算固定之后侧边导航栏的高度
+     *
+     * @returns {number} 侧边导航栏的高度
+     * @private
+     */
+    var calculateFixedSidebarViewportHeight = function () {
         var sidebarHeight = $(window).height() - $('.header').height() + 1;
         if ($('body').hasClass("page-footer-fixed")) {
             sidebarHeight = sidebarHeight - $('.footer').height();
@@ -227,8 +212,8 @@ var App = function () {
 
     var handleFixedSidebar = function () {
         var menu = $('.page-sidebar-menu');
-
-        if (menu.parent('.slimScrollDiv').size() === 1) { // destroy existing instance before updating the height
+        // destroy existing instance before updating the height
+        if (menu.parent('.slimScrollDiv').size() === 1) {
             menu.slimScroll({
                 destroy: true
             });
@@ -242,7 +227,7 @@ var App = function () {
         }
 
         if ($(window).width() >= 980) {
-            var sidebarHeight = _calculateFixedSidebarViewportHeight();
+            var sidebarHeight = calculateFixedSidebarViewportHeight();
 
             menu.slimScroll({
                 size: '7px',
@@ -295,8 +280,11 @@ var App = function () {
         });
     };
 
-    var handleSidebarToggler = function () {
-        // handle sidebar show/hide
+    /**
+     * 点击侧边菜单栏切换按钮时显示或者隐藏该菜单
+     */
+    var handleSidebarToggle = function () {
+        // 隐藏或者显示侧边导航栏
         $('.page-sidebar').on('click', '.sidebar-toggler', function (e) {
             var body = $('body');
             var sidebar = $('.page-sidebar');
@@ -355,8 +343,11 @@ var App = function () {
         });
     };
 
+    /**
+     * 点击切换按钮时，显示或者隐藏搜索选项中的横线样式
+     */
     var handleHorizontalMenu = function () {
-        //handle hor menu search form toggler click
+        //处理搜索菜单
         $('.header').on('click', '.hor-menu .hor-menu-search-form-toggler', function (e) {
             if ($(this).hasClass('hide')) {
                 $(this).removeClass('hide');
@@ -368,16 +359,16 @@ var App = function () {
             e.preventDefault();
         });
 
-        //handle hor menu search button click
+        //点击搜索按钮时处理方式
         $('.header').on('click', '.hor-menu .search-form .btn', function (e) {
-            window.location.href = "extra_search.html";
+            window.location.href = "/";
             e.preventDefault();
         });
 
         //handle hor menu search form on enter press
         $('.header').on('keypress', '.hor-menu .search-form input', function (e) {
-            if (e.which == 13) {
-                window.location.href = "extra_search.html";
+            if (e.which === 13) {
+                window.location.href = "/";
                 return false;
             }
         });
@@ -439,69 +430,6 @@ var App = function () {
         }
     };
 
-    var handleAccordions = function () {
-        $(".accordion").collapse().height('auto');
-
-        var lastClicked;
-
-        //add scrollable class name if you need scrollable panes
-        jQuery('body').on('click', '.accordion.scrollable .accordion-toggle', function () {
-            lastClicked = jQuery(this);
-        }); //move to faq section
-
-        jQuery('body').on('shown', '.accordion.scrollable', function () {
-            jQuery('html,body').animate({
-                scrollTop: lastClicked.offset().top - 150
-            }, 'slow');
-        });
-    };
-
-    var handleTabs = function () {
-
-        // function to fix left/right tab contents
-        var fixTabHeight = function (tab) {
-            $(tab).each(function () {
-                var content = $($($(this).attr("href")));
-                var tab = $(this).parent().parent();
-                if (tab.height() > content.height()) {
-                    content.css('min-height', tab.height());
-                }
-            });
-        };
-
-        // fix tab content on tab shown
-        $('body').on('shown', '.nav.nav-tabs.tabs-left a[data-toggle="tab"], .nav.nav-tabs.tabs-right a[data-toggle="tab"]', function () {
-            fixTabHeight($(this));
-        });
-
-        $('body').on('shown', '.nav.nav-tabs', function () {
-            handleSidebarAndContentHeight();
-        });
-
-        //fix tab contents for left/right tabs
-        fixTabHeight('.nav.nav-tabs.tabs-left > li.active > a[data-toggle="tab"], .nav.nav-tabs.tabs-right > li.active > a[data-toggle="tab"]');
-
-        //activate tab if tab id provided in the URL
-        if (location.hash) {
-            var tabid = location.hash.substr(1);
-            $('a[href="#' + tabid + '"]').click();
-        }
-    };
-
-    var handleScrollers = function () {
-        $('.scroller').each(function () {
-            $(this).slimScroll({
-                size: '7px',
-                color: '#a1b2bd',
-                position: isRTL ? 'left' : 'right',
-                height: $(this).attr("data-height"),
-                alwaysVisible: ($(this).attr("data-always-visible") == "1" ? true : false),
-                railVisible: ($(this).attr("data-rail-visible") == "1" ? true : false),
-                disableFadeOut: true
-            });
-        });
-    };
-
     /*
      处理工具类的方法
      */
@@ -514,6 +442,9 @@ var App = function () {
         }
     };
 
+    /**
+     * 处理下拉菜单
+     */
     var handleDropdowns = function () {
         $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
             e.stopPropagation();
@@ -602,12 +533,13 @@ var App = function () {
                 sidebarOption = 'default';
             }
 
-            resetLayout(); // reset layout to default state
+            //重置Layout至默认页面
+            resetLayout();
 
-            //layout changed, run responsive handler:
+            //Layout改变时，响应处理
             runResponsiveHandlers();
 
-            //header
+            //导航栏设置
             if (headerOption === 'fixed') {
                 $("body").addClass("page-header-fixed");
                 $(".header").removeClass("navbar-static-top").addClass("navbar-fixed-top");
@@ -616,14 +548,14 @@ var App = function () {
                 $(".header").removeClass("navbar-fixed-top").addClass("navbar-static-top");
             }
 
-            //sidebar
+            //菜单栏设置
             if (sidebarOption === 'fixed') {
                 $("body").addClass("page-sidebar-fixed");
             } else {
                 $("body").removeClass("page-sidebar-fixed");
             }
 
-            //footer 
+            //Footer设置
             if (footerOption === 'fixed') {
                 $("body").addClass("page-footer-fixed");
             } else {
@@ -703,7 +635,6 @@ var App = function () {
             handleInit();
             handleResponsiveOnResize(); // set and handle responsive    
             handleUniform();
-            handleScrollers(); // handles slim scrolling contents 
             handleResponsiveOnInit(); // handler responsive elements on page load
 
             //layout handlers
@@ -711,7 +642,7 @@ var App = function () {
             handleFixedSidebarHoverable(); // handles fixed sidebar on hover effect 
             handleSidebarMenu(); // handles main menu
             handleHorizontalMenu(); // handles horizontal menu
-            handleSidebarToggler(); // handles sidebar hide/show            
+            handleSidebarToggle(); // handles sidebar hide/show
             handleFixInputPlaceholderForIE(); // fixes/enables html5 placeholder attribute for IE9, IE8
             handleGoTop(); //handles scroll to top functionality in the footer
             handleTheme(); // handles style customer tool
@@ -719,10 +650,8 @@ var App = function () {
             //ui component handlers
             handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
             handleDropdowns(); // handle dropdowns
-            handleTabs(); // handle tabs
             handleTooltips(); // handle bootstrap tooltips
             handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions
             handleChosenSelect(); // handles bootstrap chosen dropdowns
 
             App.addResponsiveHandler(handleChosenSelect); // reinitiate chosen dropdown on main content resize. disable this line if you don't really use chosen dropdowns.
