@@ -74,6 +74,10 @@ button.toast-close-button {
   top: 12px;
   right: 12px;
 }
+.toast-top-center {
+  top: 0;
+  left: 40%;
+}
 .toast-bottom-right {
   right: 12px;
   bottom: 12px;
@@ -81,6 +85,10 @@ button.toast-close-button {
 .toast-bottom-left {
   bottom: 12px;
   left: 12px;
+}
+.toast-bottom-center {
+  bottom: 12px;
+  left: 40%;
 }
 #toast-container {
   position: fixed;
