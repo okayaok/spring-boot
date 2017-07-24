@@ -31,16 +31,20 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     /**
      * 使用@JoinTable标签的name属性注解第三方表名称,
      * 使用joinColumns属性来注解当前实体类在第三方表中的字段名称并指向该对象,此处当前对象为User,字段为"user_id"
      * 使用inverseJoinColumns属性来注解当前实体类的引用对象在第三方表中的字段名称并指向被引用对象表,此处引用对象为Role,字段为"role_id"
      */
-    @ManyToMany(fetch = FetchType.EAGER)
+    /*@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private List<Role> roles;
+    private List<Role> roles;*/
 
     public Integer getId() {
         return id;
@@ -74,21 +78,19 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        List<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
-        for (Role role : this.getRoles()) {
-            auth.add(new SimpleGrantedAuthority(role.getRoleName()));
-        }
+        List<GrantedAuthority> auth = new ArrayList<>();
+        auth.add(new SimpleGrantedAuthority(this.getRole().getRoleName()));
         return auth;
     }
 

@@ -59,10 +59,10 @@
                                 <td th:text="${user.username}">Mark</td>
                                 <td th:text="${user.password}">Otto</td>
                                 <td th:text="${user.email}">makr124</td>
-                                <td th:if="${user.roles.size()} > 0" th:each="role : ${user.roles}">
-                                    <span th:text="${role.roleName}"></span>
+                                <td th:if="${user.role} != null">
+                                    <span th:text="${user.role.roleName}"></span>
                                 </td>
-                                <td th:if="${user.roles.size()} == 0">暂无</td>
+                                <td th:if="${user.role} == null">暂无</td>
                             </tr>
                         </tbody>
                     </table>

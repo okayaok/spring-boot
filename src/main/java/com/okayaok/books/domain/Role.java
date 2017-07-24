@@ -2,7 +2,6 @@ package com.okayaok.books.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * @author hang_xiao
@@ -20,9 +19,6 @@ public class Role {
     @Column(name = "role_name")
     private String RoleName;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
-
     public Integer getId() {
         return id;
     }
@@ -39,11 +35,4 @@ public class Role {
         RoleName = roleName;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }
