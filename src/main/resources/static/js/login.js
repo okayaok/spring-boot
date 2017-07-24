@@ -53,10 +53,10 @@ var Login = function () {
             /**
              * 点击Enter按键时，验证通过后提交表单，否则返回登陆页面
              */
-            $('.login-form input').keypress(function (e) {
-                if (e.which == 13) {
+            $('.login-form input').keydown(function (e) {
+                if (e.which === 13) {
                     if ($('.login-form').validate().form()) {
-                        window.location.href = "/login";
+                        $("#loginForm").submit();
                     }
                     return false;
                 }
@@ -104,9 +104,9 @@ var Login = function () {
              * 点击Enter按键时，验证通过后提交表单，否则返回登陆页面
              */
             $('.forget-form input').keypress(function (e) {
-                if (e.which == 13) {
+                if (e.which === 13) {
                     if ($('.forget-form').validate().form()) {
-                        window.location.href = "/login";
+                        $("#forgetForm").submit();
                     }
                     return false;
                 }
@@ -182,6 +182,18 @@ var Login = function () {
 
                 errorPlacement: function (error, element) {
                     error.addClass('help-small no-left-padding').insertAfter(element.closest('.input-icon'));
+                }
+            });
+
+            /**
+             * 注册用户时敲击回车键提交表单
+             */
+            $('.register-form input').keypress(function (e) {
+                if (e.which === 13) {
+                    if ($('.register-form').validate().form()) {
+                        $("#registerForm").submit();
+                    }
+                    return false;
                 }
             });
 
