@@ -104,7 +104,7 @@ var App = function () {
         if (isIE8) {
             var currheight;
             $(window).resize(function () {
-                if (currheight == document.documentElement.clientHeight) {
+                if (currheight === document.documentElement.clientHeight) {
                     return; //quite event since only body resized not window.
                 }
                 if (resize) {
@@ -162,7 +162,7 @@ var App = function () {
      */
     var handleSidebarMenu = function () {
         jQuery('.page-sidebar').on('click', 'li > a', function (e) {
-            if ($(this).next().hasClass('sub-menu') == false) {
+            if ($(this).next().hasClass('sub-menu') === false) {
                 if (!$('.btn-navbar').hasClass('collapsed')) {
                     $('.btn-navbar').click();
                 }
@@ -318,7 +318,7 @@ var App = function () {
 
         // handle the search query submit on enter press
         $('.page-sidebar').on('keypress', '.sidebar-search input', function (e) {
-            if (e.which == 13) {
+            if (e.which === 13) {
                 window.location.href = "extra_search.html";
                 return false; //<---- Add this line
             }
@@ -462,7 +462,7 @@ var App = function () {
 
         $(".chosen").each(function () {
             $(this).chosen({
-                allow_single_deselect: $(this).attr("data-with-diselect") === "1" ? true : false
+                allow_single_deselect: $(this).attr("data-with-diselect") === "1"
             });
         });
     };
@@ -603,18 +603,18 @@ var App = function () {
 
                 var input = jQuery(this);
 
-                if (input.val() == '' && input.attr("placeholder") != '') {
+                if (input.val() === '' && input.attr("placeholder") !== '') {
                     input.addClass("placeholder").val(input.attr('placeholder'));
                 }
 
                 input.focus(function () {
-                    if (input.val() == input.attr('placeholder')) {
+                    if (input.val() === input.attr('placeholder')) {
                         input.val('');
                     }
                 });
 
                 input.blur(function () {
-                    if (input.val() == '' || input.val() == input.attr('placeholder')) {
+                    if (input.val() === '' || input.val() === input.attr('placeholder')) {
                         input.val(input.attr('placeholder'));
                     }
                 });
@@ -695,7 +695,7 @@ var App = function () {
             var el = jQuery(el);
             el.block({
                 message: '<img src="/static/image/ajax-loading.gif" align="">',
-                centerY: centerY != undefined ? centerY : true,
+                centerY: centerY !== undefined ? centerY : true,
                 css: {
                     top: '10%',
                     border: 'none',
@@ -724,7 +724,7 @@ var App = function () {
 
             if (els) {
                 jQuery(els).each(function () {
-                    if ($(this).parents(".checker").size() == 0) {
+                    if ($(this).parents(".checker").size() === 0) {
                         $(this).show();
                         $(this).uniform();
                     }
@@ -761,7 +761,7 @@ var App = function () {
 
             for (i = 0; i < params.length; i++) {
                 val = params[i].split("=");
-                if (val[0] == paramName) {
+                if (val[0] === paramName) {
                     return unescape(val[1]);
                 }
             }

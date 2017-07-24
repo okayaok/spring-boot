@@ -48,6 +48,7 @@
                         <tr>
                             <th>#</th>
                             <th th:text="#{web.role.roleName}">角色名</th>
+                            <th th:text="#{web.common.operation}">角色名</th>
                         </tr>
                         </thead>
 
@@ -55,6 +56,10 @@
                         <tr th:each="role : ${roles}">
                             <td th:text="${role.id}">1</td>
                             <td th:text="${role.roleName}">Mark</td>
+                            <td>
+                                <i class="icon-edit"></i>
+                                <i class="icon-trash"></i>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

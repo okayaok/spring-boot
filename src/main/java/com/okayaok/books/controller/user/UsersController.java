@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,5 +33,41 @@ public class UsersController {
         Page<User> users = usersRepository.findAll(pageable);
         model.addAttribute("users", users);
         return "user/index";
+    }
+
+    /**
+     * 保存用户
+     *
+     * @param user 用户
+     * @return 跳转路径
+     */
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(User user) {
+        usersRepository.save(user);
+        return "redirect:/users";
+    }
+
+    /**
+     * 更新用户
+     *
+     * @param user 用户
+     * @return 跳转路径
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(User user) {
+        usersRepository.save(user);
+        return "redirect:/users";
+    }
+
+    /**
+     * 删除用户
+     *
+     * @param id 用户ID
+     * @return 跳转路径
+     */
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String delete(@PathVariable int id) {
+        usersRepository.delete(id);
+        return "redirect:/users";
     }
 }
