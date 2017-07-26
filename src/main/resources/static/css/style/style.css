@@ -4,11 +4,6 @@
 *********************/
 
 /***
-Import fonts
-***/
-@import url(../bootstrap/fonts/css);
-
-/***
 Reset and overrides  
 ***/
 /* general body settings */
@@ -1230,7 +1225,7 @@ Portlets
 .portlet.yellow > .portlet-title .caption, .portlet-title.yellow .caption,
 .portlet.red > .portlet-title .caption, .portlet-title.red .caption,
 .portlet.purple > .portlet-title .caption, .portlet-title.purple .caption,
-.portlet.grey > .portlet-title .caption, .portlet-title.dark-grey .caption, {
+.portlet.grey > .portlet-title .caption, .portlet-title.dark-grey .caption {
   color: #fff;
 }
 
