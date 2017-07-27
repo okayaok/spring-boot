@@ -1,6 +1,6 @@
 /**
  * 用来处理Layout或者基础函数的核心Script
- * @type {{init, fixContentHeight, addResponsiveHandler, setEqualHeight, scrollTo, scrollTop, blockUI, unblockUI, initUniform, initChosenSelect, initFancybox, getActualVal, getURLParameter, isTouchDevice, isIE8, isRTL, getLayoutColorCode}}
+ * @type {{init, fixContentHeight, setEqualHeight, scrollTo, scrollTop, blockUI, unblockUI, initUniform, initChosenSelect, initFancybox, getActualVal, getURLParameter, isTouchDevice, isIE8, isRTL, getLayoutColorCode}}
  */
 var App = function () {
 
@@ -85,7 +85,6 @@ var App = function () {
         handleSidebarState();
         handleDesktopTabletContents();
         handleSidebarAndContentHeight();
-        handleChosenSelect();
         handleFixedSidebar();
         runResponsiveHandlers();
     };
@@ -374,44 +373,13 @@ var App = function () {
         });
     };
 
+    /**
+     * 点击跳到顶部按钮时，返回页面顶部
+     */
     var handleGoTop = function () {
-        /* set variables locally for increased performance */
         jQuery('.footer').on('click', '.go-top', function (e) {
             App.scrollTo();
             e.preventDefault();
-        });
-    };
-
-    var handlePortletTools = function () {
-        jQuery('body').on('click', '.portlet .tools a.remove', function (e) {
-            e.preventDefault();
-            var removable = jQuery(this).parents(".portlet");
-            if (removable.next().hasClass('portlet') || removable.prev().hasClass('portlet')) {
-                jQuery(this).parents(".portlet").remove();
-            } else {
-                jQuery(this).parents(".portlet").parent().remove();
-            }
-        });
-
-        jQuery('body').on('click', '.portlet .tools a.reload', function (e) {
-            e.preventDefault();
-            var el = jQuery(this).parents(".portlet");
-            App.blockUI(el);
-            window.setTimeout(function () {
-                App.unblockUI(el);
-            }, 1000);
-        });
-
-        jQuery('body').on('click', '.portlet .tools .collapse, .portlet .tools .expand', function (e) {
-            e.preventDefault();
-            var el = jQuery(this).closest(".portlet").children(".portlet-body");
-            if (jQuery(this).hasClass("collapse")) {
-                jQuery(this).removeClass("collapse").addClass("expand");
-                el.slideUp(200);
-            } else {
-                jQuery(this).removeClass("expand").addClass("collapse");
-                el.slideDown(200);
-            }
         });
     };
 
@@ -445,46 +413,10 @@ var App = function () {
     /**
      * 处理下拉菜单
      */
-    var handleDropdowns = function () {
+    var handleDropdown = function () {
         $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
             e.stopPropagation();
         })
-    };
-
-    var handlePopovers = function () {
-        jQuery('.popovers').popover();
-    };
-
-    var handleChosenSelect = function () {
-        if (!jQuery().chosen) {
-            return;
-        }
-
-        $(".chosen").each(function () {
-            $(this).chosen({
-                allow_single_deselect: $(this).attr("data-with-diselect") === "1"
-            });
-        });
-    };
-
-    var handleFancybox = function () {
-        if (!jQuery.fancybox) {
-            return;
-        }
-
-        if (jQuery(".fancybox-button").size() > 0) {
-            jQuery(".fancybox-button").fancybox({
-                groupAttr: 'data-rel',
-                prevEffect: 'none',
-                nextEffect: 'none',
-                closeBtn: true,
-                helpers: {
-                    title: {
-                        type: 'inside'
-                    }
-                }
-            });
-        }
     };
 
     /*
@@ -562,9 +494,9 @@ var App = function () {
                 $("body").removeClass("page-footer-fixed");
             }
 
-            handleSidebarAndContentHeight(); // fix content height            
-            handleFixedSidebar(); // reinitialize fixed sidebar
-            handleFixedSidebarHoverable(); // reinitialize fixed sidebar hover effect
+            handleSidebarAndContentHeight();
+            handleFixedSidebar();
+            handleFixedSidebarHoverable();
         };
 
         /*
@@ -629,8 +561,6 @@ var App = function () {
         //main function to initiate template pages
         init: function () {
 
-            //IMPORTANT!!!: Do not modify the core handlers call order.
-
             //core handlers
             handleInit();
             handleResponsiveOnResize(); // set and handle responsive    
@@ -648,21 +578,13 @@ var App = function () {
             handleTheme(); // handles style customer tool
 
             //ui component handlers
-            handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
-            handleDropdowns(); // handle dropdowns
+            handleDropdown(); // handle dropdowns
             handleTooltips(); // handle bootstrap tooltips
-            handlePopovers(); // handles bootstrap popovers
-            handleChosenSelect(); // handles bootstrap chosen dropdowns
 
-            App.addResponsiveHandler(handleChosenSelect); // reinitiate chosen dropdown on main content resize. disable this line if you don't really use chosen dropdowns.
         },
 
         fixContentHeight: function () {
             handleSidebarAndContentHeight();
-        },
-
-        addResponsiveHandler: function (func) {
-            responsiveHandlers.push(func);
         },
 
         // useful function to make equal height for contacts stand side by side
@@ -735,15 +657,11 @@ var App = function () {
 
         },
 
-        // initializes chosen dropdowns
+        // initializes chosen dropdown
         initChosenSelect: function (els) {
             $(els).chosen({
                 allow_single_deselect: true
             });
-        },
-
-        initFancybox: function () {
-            handleFancybox();
         },
 
         getActualVal: function (el) {

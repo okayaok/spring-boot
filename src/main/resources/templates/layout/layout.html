@@ -17,8 +17,8 @@
     <link th:href="@{/static/css/style/style-metro.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/static/css/style/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/static/css/style/style-responsive.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/static/css/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
-    <link th:href="@{/static/css/uniform.default.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/css/color/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:href="@{/static/css/uniform.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/static/css/toastr/toastr.css}" rel="stylesheet" type="text/css"/>
     <!-- 全局CSS样式 END-->
 
@@ -36,35 +36,10 @@
             </a>
 
             <a href="#" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-                <img  src="/static/image/menu-toggler.png" th:src="@{/static/image/menu-toggler.png}" alt="" />
+                <img src="/static/image/menu-toggler.png" th:src="@{/static/image/menu-toggler.png}" alt="" />
             </a>
 
             <ul class="nav pull-right">
-
-                <li class="dropdown" id="header_notification_bar">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-warning-sign"></i>
-                        <span class="badge">6</span>
-                    </a>
-
-                    <ul class="dropdown-menu extended notification">
-                        <li>
-                            <p>You have 14 new notifications</p>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <span class="label label-success"><i class="icon-plus"></i></span>
-                                New user registered.
-                                <span class="time">Just now</span>
-                            </a>
-                        </li>
-
-                        <li class="external">
-                            <a href="#">See all notifications <i class="m-icon-swapright"></i></a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li class="dropdown" id="header_inbox_bar">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -84,41 +59,12 @@
                                     <span class="from">Lisa Wong</span>
                                     <span class="time">Just Now</span>
 								</span>
-								<span class="message">Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh...</span>
+								<span class="message">Messages</span>
                             </a>
                         </li>
 
                         <li class="external">
                             <a href="#">See all messages <i class="m-icon-swapright"></i></a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="dropdown" id="header_task_bar">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-tasks"></i>
-                        <span class="badge">5</span>
-                    </a>
-
-                    <ul class="dropdown-menu extended tasks">
-                        <li>
-                            <p>You have 12 pending tasks</p>
-                        </li>
-
-                        <li>
-                            <a href="#">
-								<span class="task">
-                                    <span class="desc">New release v1.2</span>
-                                    <span class="percent">30%</span>
-								</span>
-								<span class="progress progress-success ">
-								    <span style="width: 30%;" class="bar"></span>
-								</span>
-                            </a>
-                        </li>
-
-                        <li class="external">
-                            <a href="#">See all tasks <i class="m-icon-swapright"></i></a>
                         </li>
                     </ul>
                 </li>
@@ -163,7 +109,7 @@
                 </form>
             </li>
 
-            <li class="start">
+            <li class="start active">
                 <a href="/">
                     <i class="icon-home"></i>
                     <span class="title" th:text="#{web.common.home}">首页</span>
@@ -243,6 +189,10 @@
     jQuery(document).ready(function() {
         //初始化Layout和Plugin
         App.init();
+
+        $(".page-sidebar").click(function () {
+
+        })
     });
 
 </script>
