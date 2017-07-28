@@ -17,7 +17,10 @@
     <link th:href="@{/static/css/style/style-metro.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/static/css/style/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/static/css/style/style-responsive.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/static/css/color/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:if="${#httpServletRequest.cookies[0].value} == 'blue'" th:href="@{/static/css/color/blue.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:if="${#httpServletRequest.cookies[0].value} == 'light'" th:href="@{/static/css/color/light.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:if="${#httpServletRequest.cookies[0].value} == 'grey'" th:href="@{/static/css/color/grey.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:if="${#httpServletRequest.cookies[0].value} == 'default' or ${#httpServletRequest.cookies[0].value} == ''" th:href="@{/static/css/color/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
     <link th:href="@{/static/css/uniform.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/static/css/toastr/toastr.css}" rel="stylesheet" type="text/css"/>
     <!-- 全局CSS样式 END-->
@@ -189,10 +192,6 @@
     jQuery(document).ready(function() {
         //初始化Layout和Plugin
         App.init();
-
-        $(".page-sidebar").click(function () {
-
-        })
     });
 
 </script>

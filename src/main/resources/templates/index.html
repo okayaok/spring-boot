@@ -5,7 +5,14 @@
 
 <body>
     <div layout:fragment="containerBody">
-        <H2>欢迎来到图书管理系统首页</H2>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <div th:include="~{layout/style :: styleCustom}"></div>
+                <H2>欢迎来到图书管理系统首页</H2>
+            </div>
+        </div>
     </div>
 </body>
 </html>

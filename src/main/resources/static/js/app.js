@@ -209,9 +209,12 @@ var App = function () {
         return sidebarHeight;
     };
 
+    /**
+     * 处理固定后的侧边栏
+     */
     var handleFixedSidebar = function () {
         var menu = $('.page-sidebar-menu');
-        // destroy existing instance before updating the height
+        //在更新高度之前先摧毁之前创建的实例
         if (menu.parent('.slimScrollDiv').size() === 1) {
             menu.slimScroll({
                 destroy: true
@@ -241,7 +244,10 @@ var App = function () {
         }
     };
 
-    var handleFixedSidebarHoverable = function () {
+    /**
+     * 当鼠标悬停在侧边栏上的处理函数
+     */
+    var handleFixedSidebarHover = function () {
         if ($('body').hasClass('page-sidebar-fixed') === false) {
             return;
         }
@@ -334,10 +340,10 @@ var App = function () {
                     }
                     $('.sidebar-search').addClass("open");
                 } else {
-                    window.location.href = "extra_search.html";
+                    window.location.href = "/";
                 }
             } else {
-                window.location.href = "extra_search.html";
+                window.location.href = "/";
             }
         });
     };
@@ -364,7 +370,7 @@ var App = function () {
             e.preventDefault();
         });
 
-        //handle hor menu search form on enter press
+        //处理菜单栏中的搜素选项，当敲击回车键时，提交跳转路径
         $('.header').on('keypress', '.hor-menu .search-form input', function (e) {
             if (e.which === 13) {
                 window.location.href = "/";
@@ -430,27 +436,8 @@ var App = function () {
         $('.header-option', panel).val("fixed");
         $('.footer-option', panel).val("fixed");
 
-        //处理或者重置Layout
-        var resetLayout = function () {
-            $("body").removeClass("page-footer-fixed").removeClass("page-sidebar-fixed").removeClass("page-header-fixed");
-
-            $('.header > .navbar-inner > .container').removeClass("container").addClass("container-fluid");
-
-            if ($('.page-container').parent(".container").size() === 1) {
-                $('.page-container').insertAfter('.header');
-            }
-
-            if ($('.footer > .container').size() === 1) {
-                $('.footer').html($('.footer > .container').html());
-            } else if ($('.footer').parent(".container").size() === 1) {
-                $('.footer').insertAfter('.page-container');
-            }
-
-            $('body > .container').remove();
-        };
-
-        /*
-         设置Layout
+        /**
+         * 设置Layout样式
          */
         var setLayout = function () {
 
@@ -464,9 +451,6 @@ var App = function () {
                 $('.sidebar-option', panel).val("default");
                 sidebarOption = 'default';
             }
-
-            //重置Layout至默认页面
-            resetLayout();
 
             //Layout改变时，响应处理
             runResponsiveHandlers();
@@ -496,11 +480,11 @@ var App = function () {
 
             handleSidebarAndContentHeight();
             handleFixedSidebar();
-            handleFixedSidebarHoverable();
+            handleFixedSidebarHover();
         };
 
-        /*
-         设置主题颜色
+        /**
+         * 改变主题颜色
          */
         var setColor = function (color) {
             $('#style_color').attr("href", "/static/css/color/" + color + ".css");
@@ -569,7 +553,7 @@ var App = function () {
 
             //layout handlers
             handleFixedSidebar(); // handles fixed sidebar menu
-            handleFixedSidebarHoverable(); // handles fixed sidebar on hover effect 
+            handleFixedSidebarHover(); // handles fixed sidebar on hover effect
             handleSidebarMenu(); // handles main menu
             handleHorizontalMenu(); // handles horizontal menu
             handleSidebarToggle(); // handles sidebar hide/show
