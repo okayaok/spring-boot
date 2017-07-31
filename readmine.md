@@ -31,4 +31,4 @@
 4. 若以上步骤准确无误后，等待项目自动部署完成即可。
 
 ###项目启动
-在配置完成后，运行BooksApplication类启动该项目，启动完成后在浏览器地址输入```http://localhost:8080/login\```即可成功访问。
+在配置完成后，运行BooksApplication类启动该项目，启动完成后在浏览器地址输入```http://localhost:8080/login```即可成功访问。
