@@ -22,7 +22,7 @@
     1. 若您是初次安装Git并使用，请在使用Git时，首先设置用户名和邮箱以便识别您的信息。命令如下：
     ```git config --global user.name '您的姓名或者昵称' git config --global user.email '您的邮箱账号'```
     2. 使用Git Clone命令将服务器代码克隆至您的机器，命令如下：
-        git clone https://git.oschina.net/okayaok/books-system.git '您想存放项目的绝对路径'
+    ```git clone https://git.oschina.net/okayaok/books-system.git '您想存放项目的绝对路径'```
         
 #####项目导入
 1. 打开Idea,若您的Idea没有注册，请自行搜索'Idea 2017 注册码'进行注册。
@@ -31,4 +31,4 @@
 4. 若以上步骤准确无误后，等待项目自动部署完成即可。
 
 ###项目启动
-在配置完成后，运行BooksApplication类启动该项目，启动完成后在浏览器地址输入"http://localhost:8080/login"即可成功访问。
+在配置完成后，运行BooksApplication类启动该项目，启动完成后在浏览器地址输入'http://localhost:8080/login'即可成功访问。
