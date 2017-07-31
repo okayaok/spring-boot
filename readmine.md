@@ -1,9 +1,9 @@
 ##项目简介
 
 ###框架
-该项目使用SpringBoot框架用来简化新Spring应用的初始搭建以及开发过程；使用Spring Data Jpa用来和进行数据库的查询；使用Thymeleaf前端模版解析
-动态解析HTML5页面；使用Spring Data Dialect标签用来完成分页功能，该标签只能配合Spring Data Jpa中的Page以及Pageable使用；使用Gradle来管理
-所加载的依赖jar包。
+该项目使用SpringBoot框架用来简化新Spring应用的初始搭建以及开发过程；使用SpringSecurity进行权限管理控制；使用Spring Data Jpa用来和进行数据库
+的查询；使用Thymeleaf前端模版解析动态解析HTML5页面；使用Spring Data Dialect标签用来完成分页功能，该标签只能配合Spring Data Jpa中的Page以
+及Pageable使用；使用Gradle来管理所加载的依赖jar包。
 
 ###项目环境
 
