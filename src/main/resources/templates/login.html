@@ -206,7 +206,12 @@
         if (messages==="failure") {
             toastr.error("[[#{web.login.register.failure}]]");
         }
-
+        if (messages==="200") {
+            toastr.success("[[#{web.login.sendEmail.success}]]");
+        }
+        if (messages!=="200" && messages!=="") {
+            toastr.error("[[#{web.login.sendEmail.failure}]]");
+        }
     });
 </script>
 

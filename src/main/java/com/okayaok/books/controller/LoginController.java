@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,40 +41,48 @@ public class LoginController {
      * 用户注册
      *
      * @param user 用户基本信息
-     * @return 成功页面
+     * @param attr 跳转属性
+     * @return 登录路径
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(User user, Model model) {
+    public String register(User user, RedirectAttributes attr) {
         try {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             usersRepository.save(user);
-            model.addAttribute("messages", "success");
+            attr.addFlashAttribute("messages", "success");
         } catch (Exception e) {
-            model.addAttribute("messages", "failure");
+            attr.addFlashAttribute("messages", "failure");
         }
 
-        return "login";
+        return "redirect:/login";
     }
 
     /**
      * 发送邮件
+     *
      * @param email 邮箱
-     * @param model
+     * @param attr  跳转属性
      * @return 登录路径
      */
     @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
-    public String sendEmail(String email, Model model) {
+    public String sendEmail(String email, RedirectAttributes attr) {
+        //初始化SendCloud信息
         SendCloud sendCloud = SendCloud.createWebApi(API_USER, API_KEY);
+        //加载邮件的模板
         Email template = Email.template("books_management_system_reset_password")
                 .from("service@sendcloud.im")
+                //替换模板中的变量
                 .substitutionVars(Substitution.sub()
                         .set("name", "okayaok")
                         .set("time", SimpleDateFormat.getDateTimeInstance().format(new Date()))
                         .set("resetPasswordUrl", "http://localhost:8080/resetPassword"))
+                //设置发送的邮箱
                 .to(email);
+        //发送邮件并且记录邮件发送状态
         Result result = sendCloud.mail().send(template);
-        model.addAttribute("messages", result.getMessage());
-        return "redirect: /login";
+        //返回邮件状态码
+        attr.addFlashAttribute("messages", result.getStatusCode());
+        return "redirect:/login";
     }
 }
