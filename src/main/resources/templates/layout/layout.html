@@ -20,7 +20,7 @@
     <link th:if="${#httpServletRequest.cookies[0].value} == 'blue'" th:href="@{/static/css/color/blue.css}" rel="stylesheet" type="text/css" id="style_color"/>
     <link th:if="${#httpServletRequest.cookies[0].value} == 'light'" th:href="@{/static/css/color/light.css}" rel="stylesheet" type="text/css" id="style_color"/>
     <link th:if="${#httpServletRequest.cookies[0].value} == 'grey'" th:href="@{/static/css/color/grey.css}" rel="stylesheet" type="text/css" id="style_color"/>
-    <link th:if="${#httpServletRequest.cookies[0].value} == 'default' or ${#httpServletRequest.cookies[0].value} == ''" th:href="@{/static/css/color/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:if="${#httpServletRequest.cookies[0].value} != 'blue' and ${#httpServletRequest.cookies[0].value} != 'light' and ${#httpServletRequest.cookies[0].value} != 'grey'" th:href="@{/static/css/color/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
     <link th:href="@{/static/css/uniform.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/static/css/toastr/toastr.css}" rel="stylesheet" type="text/css"/>
     <!-- 全局CSS样式 END-->
@@ -36,10 +36,6 @@
 
             <a class="brand" th:href="@{/}">
                 <img src="/static/image/logo.png" th:src="@{/static/image/logo.png}" alt="logo"/>
-            </a>
-
-            <a href="#" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-                <img src="/static/image/menu-toggler.png" th:src="@{/static/image/menu-toggler.png}" alt="" />
             </a>
 
             <ul class="nav pull-right">
@@ -101,13 +97,12 @@
             <li>
                 <div class="sidebar-toggler hidden-phone"></div>
             </li>
-
+            <!-- 搜索提交表单 -->
             <li>
-                <form class="sidebar-search">
+                <form id="searchForm" th:method="post" th:action="@{/search}" class="sidebar-search">
                     <div class="input-box">
-                        <a href="javascript:;" class="remove"></a>
-                        <input type="text" placeholder="Search..." />
-                        <input type="button" class="submit" value=" " />
+                        <input type="text" name="search" id="search" placeholder="Search..." />
+                        <input type="submit" class="submit" value="" />
                     </div>
                 </form>
             </li>
@@ -128,11 +123,11 @@
                 </a>
 
                 <ul id="userDropdown" class="sub-menu">
-                    <li>
+                    <li th:class="${#httpServletRequest.getRequestURI().contains('users')} ? 'active':''">
                         <a th:href="@{/users}" th:text="#{web.user.index}">用户列表</a>
                     </li>
 
-                    <li>
+                    <li th:class="${#httpServletRequest.getRequestURI().contains('roles')} ? 'active':''">
                         <a th:href="@{/roles}" th:text="#{web.role.index}">角色列表</a>
                     </li>
                 </ul>

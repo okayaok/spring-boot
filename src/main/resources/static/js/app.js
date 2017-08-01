@@ -157,14 +157,11 @@ var App = function () {
     };
 
     /**
-     * 处理侧边菜单栏
+     * 处理侧边菜单栏展开或者收缩
      */
     var handleSidebarMenu = function () {
         jQuery('.page-sidebar').on('click', 'li > a', function (e) {
             if ($(this).next().hasClass('sub-menu') === false) {
-                if (!$('.btn-navbar').hasClass('collapsed')) {
-                    $('.btn-navbar').click();
-                }
                 return;
             }
 
@@ -315,66 +312,10 @@ var App = function () {
             runResponsiveHandlers();
         });
 
-        // handle the search bar close
-        $('.page-sidebar').on('click', '.sidebar-search .remove', function (e) {
-            e.preventDefault();
-            $('.sidebar-search').removeClass("open");
-        });
-
-        // handle the search query submit on enter press
+        //当焦点在Input输入框时，敲击回车键，执行搜索请求
         $('.page-sidebar').on('keypress', '.sidebar-search input', function (e) {
             if (e.which === 13) {
-                window.location.href = "extra_search.html";
-                return false; //<---- Add this line
-            }
-        });
-
-        // handle the search submit
-        $('.sidebar-search .submit').on('click', function (e) {
-            e.preventDefault();
-
-            if ($('body').hasClass("page-sidebar-closed")) {
-                if ($('.sidebar-search').hasClass('open') === false) {
-                    if ($('.page-sidebar-fixed').size() === 1) {
-                        $('.page-sidebar .sidebar-toggler').click(); //trigger sidebar toggle button
-                    }
-                    $('.sidebar-search').addClass("open");
-                } else {
-                    window.location.href = "/";
-                }
-            } else {
-                window.location.href = "/";
-            }
-        });
-    };
-
-    /**
-     * 点击切换按钮时，显示或者隐藏搜索选项中的横线样式
-     */
-    var handleHorizontalMenu = function () {
-        //处理搜索菜单
-        $('.header').on('click', '.hor-menu .hor-menu-search-form-toggler', function (e) {
-            if ($(this).hasClass('hide')) {
-                $(this).removeClass('hide');
-                $('.header .hor-menu .search-form').hide();
-            } else {
-                $(this).addClass('hide');
-                $('.header .hor-menu .search-form').show();
-            }
-            e.preventDefault();
-        });
-
-        //点击搜索按钮时处理方式
-        $('.header').on('click', '.hor-menu .search-form .btn', function (e) {
-            window.location.href = "/";
-            e.preventDefault();
-        });
-
-        //处理菜单栏中的搜素选项，当敲击回车键时，提交跳转路径
-        $('.header').on('keypress', '.hor-menu .search-form input', function (e) {
-            if (e.which === 13) {
-                window.location.href = "/";
-                return false;
+                $("#searchForm").submit();
             }
         });
     };
@@ -404,8 +345,8 @@ var App = function () {
         }
     };
 
-    /*
-     处理工具类的方法
+    /**
+     * 处理工具类的方法
      */
     var handleTooltips = function () {
         //如果是触摸设备，为了防止和点击事件有冲突，可以跳过一些工具
@@ -425,8 +366,8 @@ var App = function () {
         })
     };
 
-    /*
-     主题设置
+    /**
+     * 主题设置
      */
     var handleTheme = function () {
 
@@ -451,9 +392,6 @@ var App = function () {
                 $('.sidebar-option', panel).val("default");
                 sidebarOption = 'default';
             }
-
-            //Layout改变时，响应处理
-            runResponsiveHandlers();
 
             //导航栏设置
             if (headerOption === 'fixed') {
@@ -555,7 +493,6 @@ var App = function () {
             handleFixedSidebar(); // handles fixed sidebar menu
             handleFixedSidebarHover(); // handles fixed sidebar on hover effect
             handleSidebarMenu(); // handles main menu
-            handleHorizontalMenu(); // handles horizontal menu
             handleSidebarToggle(); // handles sidebar hide/show
             handleFixInputPlaceholderForIE(); // fixes/enables html5 placeholder attribute for IE9, IE8
             handleGoTop(); //handles scroll to top functionality in the footer

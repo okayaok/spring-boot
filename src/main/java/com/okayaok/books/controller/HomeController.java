@@ -43,4 +43,14 @@ public class HomeController {
     public String unAuthentication() {
         return "/error/403";
     }
+
+    /**
+     * 搜索功能
+     *
+     * @return 搜索页面
+     */
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search() {
+        return "search";
+    }
 }

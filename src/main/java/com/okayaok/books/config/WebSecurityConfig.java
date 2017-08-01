@@ -81,7 +81,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     //不需要验证就可以访问的请求
                     .antMatchers("/static/**", "/login", "/register").permitAll()
                     //验证通过后才能访问的请求
-                    .antMatchers("/", "/users/**", "/roles/**").authenticated()
+                    .antMatchers("/", "/search/**", "/users/**", "/roles/**").authenticated()
                     .and()
                 //配置记住我功能，失效时间为7天
                 .rememberMe()
