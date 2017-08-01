@@ -28,6 +28,7 @@ dependencies {
 	compile('org.thymeleaf:thymeleaf:3.0.6.RELEASE')
 	compile('org.thymeleaf:thymeleaf-spring4:3.0.6.RELEASE')
 	compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.2.2'
+	compile group: 'io.jstack', name: 'sendcloud4j', version: '0.0.5'
 	compile('io.github.jpenren:thymeleaf-spring-data-dialect:3.3.0')
 	runtime('mysql:mysql-connector-java')
 

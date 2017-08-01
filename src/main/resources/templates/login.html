@@ -85,7 +85,7 @@
         </div>
     </form>
 
-    <form id="forgetForm" class="form-vertical forget-form" th:action="@{/resetPassword}" th:method="put">
+    <form id="forgetForm" class="form-vertical forget-form" th:action="@{/sendEmail}" th:method="post">
         <h3 class="" th:text="#{web.login.forgot.password}">忘记密码?</h3>
         <p th:text="#{web.login.reset.password.byEmail}">为了重置您的密码，请输入您的邮箱</p>
         <div class="control-group">
