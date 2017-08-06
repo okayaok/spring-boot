@@ -28,12 +28,23 @@ public class LoginController {
     @Autowired
     private UsersRepository usersRepository;
 
+    /**
+     * SendCloud邮件发送的密钥
+     */
     private static final String API_KEY = "tJ6HVwc20yrD97Z6";
 
+    /**
+     * SendCloud邮件发送的测试用户
+     */
     private static final String API_USER = "okayaok_test_OM8pcl";
 
+    /**
+     * 重置密码的请求路径
+     */
+    private static final String RESET_PASSWORD_URL = "http://localhost:8080/resetPassword";
+
     @RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
-    public String resetPassword(User user, Model model) {
+    public String resetPassword() {
         return "login";
     }
 
@@ -67,6 +78,8 @@ public class LoginController {
      */
     @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
     public String sendEmail(String email, RedirectAttributes attr) {
+        //根据用户邮箱获取用户信息
+        User user = usersRepository.findByEmail(email);
         //初始化SendCloud信息
         SendCloud sendCloud = SendCloud.createWebApi(API_USER, API_KEY);
         //加载邮件的模板
@@ -74,9 +87,9 @@ public class LoginController {
                 .from("service@sendcloud.im")
                 //替换模板中的变量
                 .substitutionVars(Substitution.sub()
-                        .set("name", "okayaok")
+                        .set("name", user.getUsername())
                         .set("time", SimpleDateFormat.getDateTimeInstance().format(new Date()))
-                        .set("resetPasswordUrl", "http://localhost:8080/resetPassword"))
+                        .set("resetPasswordUrl", RESET_PASSWORD_URL))
                 //设置发送的邮箱
                 .to(email);
         //发送邮件并且记录邮件发送状态

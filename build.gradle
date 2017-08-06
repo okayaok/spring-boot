@@ -30,6 +30,7 @@ dependencies {
 	compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.2.2'
 	compile group: 'io.jstack', name: 'sendcloud4j', version: '0.0.5'
 	compile('io.github.jpenren:thymeleaf-spring-data-dialect:3.3.0')
+	compile group: 'com.github.abel533', name: 'ECharts', version: '3.0.0.2'
 	runtime('mysql:mysql-connector-java')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
