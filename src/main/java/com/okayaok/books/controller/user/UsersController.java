@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -42,8 +43,9 @@ public class UsersController {
      * @return 跳转路径
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(User user) {
+    public String save(User user, RedirectAttributes attr) {
         usersRepository.save(user);
+        attr.addFlashAttribute("messages", "success");
         return "redirect:/users";
     }
 
@@ -54,8 +56,9 @@ public class UsersController {
      * @return 跳转路径
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(User user) {
+    public String update(User user, RedirectAttributes attr) {
         usersRepository.save(user);
+        attr.addFlashAttribute("messages", "success");
         return "redirect:/users";
     }
 
@@ -66,8 +69,9 @@ public class UsersController {
      * @return 跳转路径
      */
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable int id, RedirectAttributes attr) {
         usersRepository.delete(id);
+        attr.addFlashAttribute("messages", "success");
         return "redirect:/users";
     }
 }
