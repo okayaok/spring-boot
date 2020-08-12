@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * 用户登陆时，权限验证
  *
  * @author hang_xiao
- *         2017/7/17.
+ * Create On  2017/7/17.
  */
 @Service
 public class UsersService implements UserDetailsService {
